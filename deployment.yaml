@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: app
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            run: app
+    template:
+        metadata:
+            labels:
+                run: app
+        spec:
+            containers:
+            - image: siresimon/plan-a
+              imagePullPolicy: IfNotPresent
+              name: plan-a
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plan-a-service
+spec:
+  type:  NodePort
+  ports:
+  - name:  web
+    port:  80
+    targetPort:  8081
