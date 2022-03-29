@@ -1,4 +1,4 @@
 deployment:
-	kubectl apply -f deployment.yaml && kubectl get services
+	kubectl apply -f deployment.yaml
 minikube:
 	minikube start && minikube tunnel
